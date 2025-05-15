@@ -1,0 +1,160 @@
+pip install flask
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+# HTML-шаблон с ретро-стилем и дизайном 90-х
+html_template = '''
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ретро парк аттракционов 90-х</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-color: #2b2b2b;
+            font-family: 'Press Start 2P', cursive;
+            color: #00ffea;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+            background-size: 600% 600%;
+            animation: gradientAnimation 15s ease infinite;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #fff;
+        }
+
+        @keyframes gradientAnimation {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 2px #000;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: #ff0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        section {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px dotted #ff00ff;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .ride {
+            background-color: rgba(0, 255, 234, 0.1);
+            margin: 15px 0;
+            padding: 15px;
+            border: 2px dashed #ff00ff;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .ride:hover {
+            transform: scale(1.02);
+        }
+
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #555;
+            border-top: 3px solid #00ffff;
+            margin-top: 40px;
+        }
+
+        /* Ретро эффект для изображений */
+        img {
+            max-width: 100%;
+            border: 5px solid #ff00ff;
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ретро парк аттракционов 90-х</h1>
+        <nav>
+            <a href="#rides">Аттракционы</a>
+            <a href="#history">История</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h2>Добро пожаловать в эпоху 90-х!</h2>
+        <p>Погрузитесь в атмосферу ярких цветов, кассетных магнитол и неоновых огней! Наш парк — это место, где сбываются мечты о радужных приключениях и веселье в стиле 90-х.</p>
+        <img src="https://images.unsplash.com/photo-1609346417248-17b0be5d2e7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ретро парк" />
+    </section>
+
+    <section id="rides">
+        <h2>Наши аттракционы</h2>
+        <div class="ride">
+            <h3>Карусель "Радуга"</h3>
+            <p>Классическая карусель с яркими световыми эффектами и веселой музыкой 90-х.</p>
+        </div>
+        <div class="ride">
+            <h3>Американские горки "Бешеный Молния"</h3>
+            <p>Самые захватывающие горки в стиле уличных гонок, чтобы почувствовать себя героем видеоигр.</p>
+        </div>
+        <div class="ride">
+            <h3>Комната страха "Тени прошлого"</h3>
+            <p>Настоящий ретро-хоррор с эффектами и спецэффектами из 90-х.</p>
+        </div>
+    </section>
+
+    <section id="history">
+        <h2>История парка</h2>
+        <p>Наш парк был основан в 1995 году и за годы стал культовым местом для молодежи по всей Америке. Вдохновляясь популярными мультфильмами и музыкой 90-х, мы создали уникальную атмосферу ностальгии и веселья.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Контакты</h2>
+        <p>Адрес: 1234 Retro Ave, Los Angeles, CA</p>
+        <p>Телефон: +1 555 123 4567</p>
+        <p>Email: info@retropark90s.com</p>
+    </section>
+
+    <footer>
+        &copy; 2023 Ретро парк аттракционов. Все права защищены.
+    </footer>
+</body>
+</html>
+'''
+
+@app.route('/')
+def home():
+    return render_template_string(html_template)
+
+if __name__ == '__main__':
+    app.run(debug=True)
